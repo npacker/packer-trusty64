@@ -71,10 +71,6 @@
   },{
     "type": "puppet-masterless",
     "manifest_file": "provisioners/trusty64.pp",
-    "execute_command": "echo {{user `password`}} | sudo -S -E puppet apply --modulepath='{{.ModulePath}}' {{.ManifestFile}}"
-  },{
-    "type": "puppet-masterless",
-    "manifest_file": "provisioners/guest_additions.pp",
     "module_paths": ["provisioners"],
     "execute_command": "echo {{user `password`}} | sudo -S -E puppet apply --modulepath='{{.ModulePath}}' {{.ManifestFile}}"
   }],
