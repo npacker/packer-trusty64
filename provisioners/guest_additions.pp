@@ -1,1 +1,0 @@
-include guest_additions
