@@ -70,7 +70,7 @@
     "destination": "/home/{{user `username`}}/grub"
   },{
     "type": "puppet-masterless",
-    "manifest_file": "provisioners/trusty64.pp",
+    "manifest_file": "provisioners/vagrant.pp",
     "module_paths": ["provisioners"],
     "execute_command": "echo {{user `password`}} | sudo -S -E puppet apply --modulepath='{{.ModulePath}}' {{.ManifestFile}}"
   }],
