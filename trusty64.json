@@ -69,6 +69,10 @@
     "source": "provisioners/grub",
     "destination": "/home/{{user `username`}}/grub"
   },{
+    "type": "shell",
+    "inline": ["sudo puppet module install puppetlabs-stdlib", "sudo puppet module install puppetlabs-concat"],
+    "execute_command": "echo {{user `password`}} | {{.Vars}} sudo -S -E sh '{{.Path}}'"
+  },{
     "type": "puppet-masterless",
     "manifest_file": "provisioners/vagrant.pp",
     "module_paths": ["provisioners"],
