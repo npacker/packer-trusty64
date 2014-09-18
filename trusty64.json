@@ -70,7 +70,7 @@
     "destination": "/home/{{user `username`}}/grub"
   },{
     "type": "shell",
-    "inline": ["sudo puppet module install puppetlabs-stdlib", "sudo puppet module install puppetlabs-concat"],
+    "inline": ["sudo puppet module install puppetlabs-stdlib"],
     "execute_command": "echo {{user `password`}} | {{.Vars}} sudo -S -E sh '{{.Path}}'"
   },{
     "type": "puppet-masterless",
@@ -81,7 +81,7 @@
   
   "post-processors": [{
     "type": "vagrant",
-    "output": "wwu-dev-amd64.box",
+    "output": "vbox-trusty64.box",
     "compression_level": 0
   }]
 
