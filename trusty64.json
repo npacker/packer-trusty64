@@ -29,7 +29,7 @@
       ["modifyvm", "{{.Name}}", "--memory", "2048"],
       ["modifyvm", "{{.Name}}", "--ioapic", "on"],
       ["modifyvm", "{{.Name}}", "--cpus", "2"],
-      ["modifyvm", "{{.Name}}", "--vram", "9"],
+      ["modifyvm", "{{.Name}}", "--vram", "16"],
       ["modifyvm", "{{.Name}}", "--mouse", "ps2"],
       ["modifyvm", "{{.Name}}", "--rtcuseutc", "on"],
       ["modifyvm", "{{.Name}}", "--audio", "none"],
