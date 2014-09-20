@@ -9,38 +9,37 @@
   "builders": [{
     "type": "virtualbox-iso",
     "guest_os_type": "Ubuntu_64",
-    
+
     "headless": false,
-    
+
     "iso_url": "http://releases.ubuntu.com/trusty/ubuntu-14.04.1-server-amd64.iso",
     "iso_checksum": "ca2531b8cd79ea5b778ede3a524779b9",
     "iso_checksum_type": "md5",
-    
+
     "http_directory": "preseeds",
-    
+
     "guest_additions_mode": "upload",
     "guest_additions_path": "/home/{{user `username`}}/VBoxGuestAdditions_{{.Version}}.iso",
-    
+
     "disk_size": 20480,
     "hard_drive_interface": "sata",
-    
-    "vm_name": "ubuntu-trusty64",   
+
+    "vm_name": "ubuntu-trusty64",
     "vboxmanage": [
       ["modifyvm", "{{.Name}}", "--memory", "2048"],
+      ["modifyvm", "{{.Name}}", "--ioapic", "on"],
       ["modifyvm", "{{.Name}}", "--cpus", "2"],
       ["modifyvm", "{{.Name}}", "--vram", "9"],
       ["modifyvm", "{{.Name}}", "--mouse", "ps2"],
       ["modifyvm", "{{.Name}}", "--rtcuseutc", "on"],
       ["modifyvm", "{{.Name}}", "--audio", "none"],
-      ["modifyvm", "{{.Name}}", "--usb", "off"],
-      ["modifyvm", "{{.Name}}", "--nictype1", "82543GC"],
-      ["storagectl", "{{.Name}}", "--name", "SATA Controller", "--hostiocache", "on"]
+      ["modifyvm", "{{.Name}}", "--usb", "off"]
     ],
-    
+
     "ssh_username": "{{user `username`}}",
     "ssh_password": "{{user `password`}}",
     "ssh_wait_timeout": "30m",
-       
+
     "boot_wait": "5s",
     "boot_command": [
       "<esc><esc><enter><wait>",
@@ -55,11 +54,11 @@
       "keyboard-configuration/variant=USA ",
       "initrd=/install/initrd.gz -- <enter>"
     ],
-    
+
     "shutdown_timeout": "1m",
     "shutdown_command": "echo {{user `password`}} | sudo -S shutdown -P now"
   }],
-  
+
   "provisioners": [{
     "type": "file",
     "source": "provisioners/failsafe.conf",
@@ -78,7 +77,7 @@
     "module_paths": ["provisioners"],
     "execute_command": "echo {{user `password`}} | sudo -S -E puppet apply --modulepath='{{.ModulePath}}' {{.ManifestFile}}"
   }],
-  
+
   "post-processors": [{
     "type": "vagrant",
     "output": "vbox-trusty64.box",
